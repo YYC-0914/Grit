@@ -18,6 +18,13 @@ dataset:
   edge_encoder_name: TypeDictEdge
   edge_encoder_num_types: 4
   edge_encoder_bn: False
+posenc_RWSE:
+  enable: True
+  kernel:
+    times_func: range(1,21)
+  model: Linear
+  dim_pe: 24
+  raw_norm_type: BatchNorm
 train:
   mode: custom
   batch_size: 32   
