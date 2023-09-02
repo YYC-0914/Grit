@@ -146,6 +146,16 @@ def compute_posenc_stats(data, pe_types, is_undirected, cfg):
                             spd=param.spd, # by default False
                             )
         data = transform(data)
+    
+    if cfg.MaskEncoder.mask_type == "RRWP":
+        mask_cfg = cfg.MaskEncoder
+        transform = partial(add_full_rrwp,
+                            walk_length=mask_cfg.ksteps,
+                            attr_name_abs="rrwp",
+                            attr_name_rel="rrwp",
+                            add_identity=True
+                            )
+        data = transform(data)
 
     return data
 
