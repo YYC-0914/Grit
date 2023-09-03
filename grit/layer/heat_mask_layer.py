@@ -79,12 +79,15 @@ class RRWPMaskEncoderLayer(nn.Module):
                 f"required for {self.__class__.__name__}; ")
 
         if not (hasattr(batch, 'extended_edge_index')):
-            extended_edge_val_dummy = torch.zeros(batch.rrwp_index.shape[1], dtype=torch.int64)
+            device = batch.x.device
+            extended_edge_val_dummy = torch.zeros([batch.rrwp_index.shape[1], batch.edge_attr.shape[1]], dtype=torch.int64).to(device)
             extended_edge_index, extended_edge_val = torch_sparse.coalesce(torch.cat([batch.edge_index, batch.rrwp_index], dim=1), 
                     torch.cat([batch.edge_attr, extended_edge_val_dummy], dim=0), batch.num_nodes, batch.num_nodes,
                     op="add")
             setattr(batch, "extended_edge_index", extended_edge_index)
             setattr(batch, "extended_edge_attr", extended_edge_val)
+        # N x N x K -> N x N x num_clusters
+
         encoding = batch.rrwp_val
         for i in range(self.n_layers):
             encoding = self.model[i](encoding)

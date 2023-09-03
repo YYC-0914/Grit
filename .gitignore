@@ -4,8 +4,10 @@ datasets/*
 */__pycache__
 */*/__pycache__
 */*/*/__pycache__
+*.out
+wandb/
 
 data
 .pyc
 graphgps.bak
-.out
+

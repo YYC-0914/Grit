@@ -45,4 +45,5 @@ cfg_dir="configs/HMN"
 
 DATASET="zinc"
 slurm_directive="--time=2-24:00:00 --mem=16G --gres=gpu:1 --cpus-per-task=4 -p AI4Phys"
-run_repeats ${DATASET} HMN-RRWP+RWSE "name_tag test_run.1run"
+# run_repeats ${DATASET} HMN-RRWP+RWSE "name_tag test_run.1run"
+run_repeats ${DATASET} HMN-RRWP+RWSE_2000epochs "name_tag test_run_3.1run"

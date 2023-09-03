@@ -41,14 +41,14 @@ gnn:
   MaskEncoder:
     mask_type : "RRWP"
     n_layers : 2
-    hidden_dim : 16
+    hidden_dim : 32
     batch_norm : True
     extended : True
     ksteps: 8
     add_identity: True
     add_node_attr: False
     add_inverse: False
-
+    
   HeatConvBlock_n_layers: 1
   layers_pre_mp: 0
   layers_block: 5

@@ -53,7 +53,6 @@ class FilteredGINELayer(pyg_nn.conv.MessagePassing):
         x_r = x[1]
         if x_r is not None:
             out += (1 + self.eps) * x_r
-
         return self.nn(out)
     
     def message(self, x_j, edge_attr, mask):
